@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Your Tasks</h1>
+
+{% if tasks %}
+<ul class="task-list">
+
+    {% for task in tasks %}
+    <li class="task-box">
+        <div>
+            <strong>{{ task.title }}</strong><br>
+            Priority: {{ task.priority }} |
+            Due: {{ task.due_date }} |
+            Status: {{ task.status }}
+        </div>
+
+        <div class="actions">
+            <a class="btn-complete" href="/complete/{{ task.id }}">✔ Complete</a>
+            <a class="btn-delete" href="/delete/{{ task.id }}">🗑 Delete</a>
+        </div>
+    </li>
+    {% endfor %}
+
+</ul>
+{% else %}
+<p>No tasks added yet.</p>
+{% endif %}
+
+{% endblock %}
